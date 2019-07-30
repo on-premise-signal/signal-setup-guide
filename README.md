@@ -21,7 +21,48 @@ Guide parts:
 
 ## Setup SGX Driver
 
-[You want to contribute? Please submit GitHub issue and Pull Request.]
+First, you need to clone `linux-sgx-driver` repository to your computer:
+```bash
+git clone https://github.com/intel/linux-sgx-driver.git
+```
+
+Change directory to local repository:
+```bash
+cd linux-sgx-driver
+```
+
+Then you need to use `sgx2` branch:
+```
+git chekcout sgx2
+```
+
+You can follow guide provided in the repository: [Build and Install the Intel(R) SGX Driver](https://github.com/intel/linux-sgx-driver/#build-and-install-the-intelr-sgx-driver)
+
+But I will provide example to build and install in Ubuntu 18.04, maybe it will be useful for you to get the general idea.
+
+Check if matching kernel headers are installed:
+```bash
+$ dpkg-query -s linux-headers-$(uname -r)
+```
+
+To install matching headers: 
+```bash
+$ sudo apt-get install linux-headers-$(uname -r)
+```
+
+Build the driver from source code:
+```
+$ make
+```
+
+To install the Intel(R) SGX driver, enter the following command with root privilege:
+```
+$ sudo mkdir -p "/lib/modules/"`uname -r`"/kernel/drivers/intel/sgx"    
+$ sudo cp isgx.ko "/lib/modules/"`uname -r`"/kernel/drivers/intel/sgx"    
+$ sudo sh -c "cat /etc/modules | grep -Fxq isgx || echo isgx >> /etc/modules"    
+$ sudo /sbin/depmod
+$ sudo /sbin/modprobe isgx
+```
 
 
 ## Setup SGX PSW
