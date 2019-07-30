@@ -70,6 +70,83 @@ $ sudo /sbin/modprobe isgx
 [You want to contribute? Please submit GitHub issue and Pull Request.]
 
 
+## Get Intel SGX PCK Certificate
+
+Environment:
+1. fresh Azure Confidential Compute VM (remove checkmark in "Install OpenEnclave things...", using West Europe region)
+1. Ubuntu 18.04
+
+
+First, install DKMS:
+```
+$ sudo apt install dkms
+```
+
+
+Then installing Intel compiled ready-to-use SGX driver:
+```
+$ wget https://download.01.org/intel-sgx/dcap-1.2/linux/dcap_installers/ubuntuServer18.04/sgx_linux_x64_driver_1.12_c110012.bin
+
+$ chmod +x sgx_linux_x64_driver_1.12_c110012.bin
+
+$ sudo ./sgx_linux_x64_driver_1.12_c110012.bin
+```
+
+
+Proceed to install SGX SDK:
+```
+$ wget https://download.01.org/intel-sgx/dcap-1.2/linux/dcap_installers/ubuntuServer18.04/sgx_linux_x64_sdk_2.6.100.51285.bin
+
+$ chmod +x sgx_linux_x64_sdk_2.6.100.51285.bin
+
+$ sudo ./sgx_linux_x64_sdk_2.6.100.51285.bin
+```
+
+
+Activate SGX environment (I guess we don't need it):
+```
+$ source ~/sgxsdk/environment
+```
+
+
+Continue to install SGX PSW:
+```
+$ sudo apt install libprotobuf10
+
+$ wget https://download.01.org/intel-sgx/dcap-1.2/linux/dcap_installers/ubuntuServer18.04/libsgx-enclave-common_2.6.100.51285-bionic1_amd64.deb
+
+$ sudo dpkg -i libsgx-enclave-common_2.6.100.51285-bionic1_amd64.deb
+```
+
+
+Alright, please install SGX DCAP:
+```
+$ wget https://download.01.org/intel-sgx/dcap-1.2/linux/dcap_installers/ubuntuServer18.04/libsgx-dcap-ql_1.2.100.51313-bionic1_amd64.deb
+
+$ sudo dpkg -i libsgx-dcap-ql_1.2.100.51313-bionic1_amd64.deb
+```
+
+
+Finally, download and run PCKIDRetrieval Tool:
+```
+$ wget https://download.01.org/intel-sgx/dcap-1.2/linux/dcap_installers/ubuntuServer18.04/PCKIDRetrievalTool_v1.2.100.51313.tar.gz
+
+$ tar xzf PCKIDRetrievalTool_v1.2.100.51313.tar.gz
+
+$ cd PCKIDRetrievalTool_v1.2.100.51313
+
+$ ./PCKIDRetrievalTool
+```
+
+
+In my Azure Confidential Compute VM, it was successfully generated a CSV file with required values. And I can get a PCK Certificate from Intel API. StdOut:
+```
+Intel(R) Software Guard Extensions PCK ID Retrieval Tool Version 1.2.0
+
+pckid_retrieval.csv has been generated successfully!
+```
+
+
 ## Setup Signal CDS (Contact Discovery Service)
 
 You can see sample of YML configuration file for Signal CDS: [config-signal-cds.yml](config-signal-cds.yml)
