@@ -1,0 +1,53 @@
+enclave:
+  spid:        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  certificate: |
+    -----BEGIN CERTIFICATE-----
+    MIIF/TCCA+WgAwIBAgIUH8x9GMOzUnLFxxUElnd7hiHp7MowDQYJKoZIhvcNAQEL
+    BQAwgY0xCzAJBgNVBAYTAklEMRAwDgYDVQQIDAdKYWthcnRhMRAwDgYDVQQHDAdK
+    ............................ snip ..............................
+    ssP7fLq/i/sJoT/gmXUpYa/mQGZ7p0eVDV05u1gswA1KjOf2PmgLDVBezhZw3OR5
+    1C1ikNyCZ9YBYlQ21ZLhOHtmAYaKlODksK5xIKVRi8D6ZqQQDw0mSw9K5nzVSis1
+    CA==
+    -----END CERTIFICATE-----
+
+  key:         |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIJKQIBAAKCAgEAuKpGlA8Mo3yZnjnCE716wPRXsK/PPxYnK2BN9rYhz2tsAPg5
+    TuI6CdxtOqNVQ3a4bxp65Ez0yNFxA2bH7kItt05O8xO1yne9hmFuuRWdZ1hUMecz
+    ............................ snip ..............................
+    /9ANeL3+hderDgz4gCEnIJPCGn0sXFCixiU4774lNYUO9DftDM1uxGZCFEKUnDYR
+    UgS5+7PNkDxwHJoiXzo2kVkKpN70pPJED1jjbiW7D99qOcyMlD+ffKcajbTr
+    -----END RSA PRIVATE KEY-----
+
+  iasHost:  "https://test-as.sgx.trustedservices.intel.com/"
+  acceptGroupOutOfDate: false
+  instances:
+   - mrenclave: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+     debug:     true
+
+signal:
+  userToken:    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  serverToken:  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+redis:
+  masterName:   mysentinel
+  sentinelUrls:
+   - 127.0.0.1:26379
+
+directory:
+  initialSize: 10000000
+  minLoadFactor: 0.75
+  maxLoadFactor: 0.85
+  sqs:
+    accessKey: asdf
+    accessSecret: asdf
+    queueUrl: asdf
+    queueRegion: ap-southeast-1
+
+limits:
+  contactQueries:
+    bucketSize:        50000
+    leakRatePerMinute: 50000
+  remoteAttestations:
+    bucketSize:        50000
+    leakRatePerMinute: 50000

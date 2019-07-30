@@ -31,7 +31,46 @@ Guide parts:
 
 ## Setup Signal CDS (Contact Discovery Service)
 
-[You want to contribute? Please submit GitHub issue and Pull Request.]
+You can see sample of YML configuration file for Signal CDS: [config-signal-cds.yml](config-signal-cds.yml)
+
+`spid` is "Service Provider ID" assigned by Intel for you. You can get it by sign-up for an Intel account, and start service subscription in [Intel's SGX self-service portal](https://api.portal.trustedservices.intel.com/EPID-attestation)
+
+Then you will need X.590 certificate and RSA private key. You can generate one by using this command:
+```bash
+openssl req -x509 -nodes -newkey rsa:4096 -keyout server.key -out server.crt -days 365
+```
+
+Please check your `server.key` file value, is it started with string below:
+```
+-----BEGIN PRIVATE KEY-----
+```
+
+If so, we need to convert the key in PKCS#8 format to old PKCS#1, format expected by the CDS program using this command:
+```bash
+openssl rsa -in server.key -out server_new.key
+```
+
+Copy-and-paste value of `server.crt` to `certificate` field inside YML configuration file. For `key` field, you need to copy value from `server.key` or `server_new.key` which started with string below:
+```
+-----BEGIN RSA PRIVATE KEY-----
+```
+
+Then please build your `enclave` using this command:
+```
+make -C <repository_root>/enclave
+```
+
+It will place a file (your compiled CDS SGX enclave) inside this directory:
+```
+services/src/main/resources/enclave/
+```
+
+Your SGX enclave binary file will be named 64-chars long, with ".so" suffix like this:
+```
+services/src/main/resources/enclave/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.so
+```
+
+Please copy the 64-chars file name (without the ".so") to `mrenclave` field in YML file.
 
 
 ## Setup Signal Server
