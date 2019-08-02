@@ -1,25 +1,7 @@
 enclave:
-  spid:        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-  certificate: |
-    -----BEGIN CERTIFICATE-----
-    MIIF/TCCA+WgAwIBAgIUH8x9GMOzUnLFxxUElnd7hiHp7MowDQYJKoZIhvcNAQEL
-    BQAwgY0xCzAJBgNVBAYTAklEMRAwDgYDVQQIDAdKYWthcnRhMRAwDgYDVQQHDAdK
-    ............................ snip ..............................
-    ssP7fLq/i/sJoT/gmXUpYa/mQGZ7p0eVDV05u1gswA1KjOf2PmgLDVBezhZw3OR5
-    1C1ikNyCZ9YBYlQ21ZLhOHtmAYaKlODksK5xIKVRi8D6ZqQQDw0mSw9K5nzVSis1
-    CA==
-    -----END CERTIFICATE-----
-
-  key:         |
-    -----BEGIN RSA PRIVATE KEY-----
-    MIIJKQIBAAKCAgEAuKpGlA8Mo3yZnjnCE716wPRXsK/PPxYnK2BN9rYhz2tsAPg5
-    TuI6CdxtOqNVQ3a4bxp65Ez0yNFxA2bH7kItt05O8xO1yne9hmFuuRWdZ1hUMecz
-    ............................ snip ..............................
-    /9ANeL3+hderDgz4gCEnIJPCGn0sXFCixiU4774lNYUO9DftDM1uxGZCFEKUnDYR
-    UgS5+7PNkDxwHJoiXzo2kVkKpN70pPJED1jjbiW7D99qOcyMlD+ffKcajbTr
-    -----END RSA PRIVATE KEY-----
-
-  iasHost:  "https://test-as.sgx.trustedservices.intel.com/"
+  spid:         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  iasSecretKey: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  iasHost:      https://api.trustedservices.intel.com/sgx/dev
   acceptGroupOutOfDate: false
   instances:
    - mrenclave: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
