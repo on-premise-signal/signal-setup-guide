@@ -1,4 +1,19 @@
-# On-Premise Signal Setup Guide
+# On-Premise Setup Guide (DISCONTINUED)
+
+To prevent:
+1. public confusion
+2. misuse of trademarked `Signal` brand
+
+this `on-premise-signal` GitHub organization, also all repositories belonged to it, include `signal-setup-guide` repository ARE DISCONTINUED / ABANDONED.
+
+Please use new GitHub organization `secure-sign`:
+https://github.com/secure-sign
+
+This `on-premise-signal` GitHub organization and `signal-setup-guide` repository will be kept to prevent broken link at Signal Users Community forum and another sites, but may be deleted at the future wihtout any guarantee.
+
+
+# Old Contents:
+
 
 This guide is a community collaboration effort to setup on-premise (self-hosted) latest Signal App backend.
 
